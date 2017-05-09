@@ -19,7 +19,7 @@ public interface IBookReviewService
     List<BookInfo> GetBooks();
 
     [OperationContract]
-    BookInfo GetBooksByAuthor(string authorName);
+    List<Book> GetBooksByAuthor(string authorName);
 
 }
 

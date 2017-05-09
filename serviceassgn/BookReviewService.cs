@@ -33,18 +33,46 @@ public class BookReviewService : IBookReviewService
         return books;
     }
 
-    public BookInfo GetBooksByAuthor(string authorName)
+    public List<Book> GetBooksByAuthor(string authorName)
     {
-        throw new NotImplementedException();
+        var bks = from b in db.Books
+                   from a in b.Authors
+                   where a.AuthorName.Equals(authorName)
+                   select b;
+
+        List<Book> books = new List<Book>(); //book object
+
+        foreach(var bk in bks)
+        {
+            Book bo = new Book();
+            bo.BookTitle = bk.BookTitle;
+            bo.BookEntryDate = bk.BookEntryDate;
+            bo.BookISBN = bk.BookISBN;
+            books.Add(bo);
+        }
+        return books;
     }
 
     public int Login(string user, string password)
     {
-        throw new NotImplementedException();
+        int key = 0;//initialzing the variable
+        int result = db.usp_ReviewerLogin(user, password);
+        if (result != -1)
+        {
+            var userKey = (from k in db.Reviewers
+                           where k.ReviewerUserName.Equals(user)
+                           select k.ReviewerKey).FirstOrDefault();
+            key = (int)userKey;
+        }
+
+        return key;
     }
 
     public bool RegisterReviewer(Reviewer r)
     {
-        throw new NotImplementedException();
+        bool result = true;
+        int rev = db.usp_NewReviewer(r.ReviewerUserName, r.ReviewerFirstName,
+            r.ReviewerLastName, r.ReviewerEmail, r.ReviewPlainPassword);
+        return result;
     }
 }
