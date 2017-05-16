@@ -9,7 +9,7 @@ using System.Text;
 public class CommAsstReg : ICommAsstReg
 {
     Community_AssistEntities db = new Community_AssistEntities();
-    public List<GrantRequest> GetGrants()
+    public List<GrantRequest> GetGrantsbyRequest()
     {
         var grantreq = from g in db.GrantRequests
                        select g;
@@ -28,5 +28,60 @@ public class CommAsstReg : ICommAsstReg
             }
         return grants;
         } 
+
+    //public List<GrantReview> GetGrantsbyReview()
+    //{
+    //    var grantrev = from g in db.GrantReview
+    //                   from g in db.People
+    //                   where g
+    //}
+
+
+    public int Login(string user, string password)
+    {
+        int key = 0;
+        int result = db.usp_Login(user, password);
+        if (result != -1)
+        {
+            var userKey = (from k in db.People
+                           where k.PersonEmail.Equals(user)
+                           select k.PersonKey).FirstOrDefault();
+            key = (int)userKey;
+        }
+        return key;
     }
+
+    public bool NewGrant(GrantRequest r)
+    {
+        bool result = true;
+        try
+        {
+            GrantReview grantrev = new GrantReview();
+            grantrev.GrantRequest = r;
+            grantrev.GrantRequestStatus = "pending";
+            grantrev.GrantReviewDate = DateTime.Now;
+
+            db.GrantRequests.Add(r);
+            db.GrantReviews.Add(grantrev);
+            db.SaveChanges();
+                   }
+        catch (Exception ex)
+        {
+            result = false;
+        }
+        return result; 
+    }
+
+    public bool RegisterPerson(PersonInfo pi)
+    {
+        bool result = true;
+        int reg = db.usp_Register(pi.lastname, pi.firstname, pi.email, pi.password, 
+            pi.ApartmentNumber, pi.Street, pi.City, pi.State, pi.Zipcode, 
+            pi.HomePhone, pi.WorkPhone);
+
+        return result;
+    }
+
+  }
+
 

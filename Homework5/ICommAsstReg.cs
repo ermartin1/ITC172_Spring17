@@ -18,11 +18,12 @@ public interface ICommAsstReg
     [OperationContract]
     List<GrantRequest> GetGrantsbyRequest();
 
-    [OperationContract]
-    List<GrantReview> GetGrantsByReview();
+    //[OperationContract]
+    //List<GrantReview> GetGrantsByReview();
 
-   
-    
+    [OperationContract]
+    bool NewGrant(GrantRequest r);
+
 }
 
 [DataContract]
@@ -48,6 +49,9 @@ public class PersonInfo
 
     [DataMember]
     public string City { get; set; }
+
+    [DataMember]
+    public string State { get; set; }
 
     [DataMember]
     public string Zipcode { get; set; }
