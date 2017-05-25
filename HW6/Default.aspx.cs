@@ -14,6 +14,19 @@ public partial class _Default : System.Web.UI.Page
 
     protected void SubmitButton_Click(object sender, EventArgs e)
     {
+        HW6ClientRef.CommAsstRegClient sc =
+            new HW6ClientRef.CommAsstRegClient();
 
+        int result = sc.Login(UserTextBox.Text, PassTextBox.Text);
+
+        if (result != 0)
+        {
+            Session["userKey"] = result;
+            ResultLabel.Text = "Welcome";
+        }
+        else
+        {
+            ResultLabel.Text = "Invalid Login";
+        }
     }
 }

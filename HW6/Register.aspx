@@ -83,6 +83,12 @@
                 ControlToCompare="PassTextBox">
             </asp:CustomValidator> </td>
         </tr>
+        <tr>
+            <td>
+                <asp:Button ID="SubmitButton" runat="server" Text="Submit" OnClick="SubmitButton_Click" /></td>
+        <td>
+            <asp:Label ID="ErrorLabel" runat="server" Text=""></asp:Label></td>
+        </tr>
     </table>
     </div>
     </form>
