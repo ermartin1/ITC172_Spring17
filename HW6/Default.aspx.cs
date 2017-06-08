@@ -22,7 +22,8 @@ public partial class _Default : System.Web.UI.Page
         if (result != 0)
         {
             Session["userKey"] = result;
-            ResultLabel.Text = "Welcome";
+         //   ResultLabel.Text = "Welcome";
+            Response.Redirect("NewGrant.aspx");
         }
         else
         {

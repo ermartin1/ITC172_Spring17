@@ -7,30 +7,39 @@ using System.Web.UI.WebControls;
 
 public partial class GetGrants : System.Web.UI.Page
 {
-    GrantReqRequest.Community_AssistEntities sc = 
-        new GrantReqRequest.Community_AssistEntities();
+    HW6ClientRef.CommAsstRegClient gr =
+        new HW6ClientRef.CommAsstRegClient();
 
-        protected void Page_Load(object sender, EventArgs e)
+    protected void Page_Load(object sender, EventArgs e)
     {
-        if (!IsPostBack)
+        if (Session["userKey"] == null)
+            Response.Redirect("Default.aspx");
+       // if (!IsPostBack)
             FillGrantRequest();
-    }
-
-    protected void GrantDropDownList_SelectedIndexChanged(object sender, EventArgs e)
-    {
-        GrantReqRequest.Grant[] grants =
-            sc.GetGrantRequests(GrantDropDownList.SelectedItem.Text);
-        GridView1.DataSource = grants;
-        GridView1.DataBind();
     }
 
     protected void FillGrantRequest()
     {
-        string[] donors = sc.GetDonors();
-        GrantDropDownList.DataSource = donors;
-        GrantDropDownList.DataBind();
-        ListItem item = new ListItem("Choose a Donor");
-        GrantDropDownList.Items.Insert(0, item);
+        HW6ClientRef.GrantRequest[] grants = gr.GetGrantsbyRequest((int)Session["userKey"]);
+
+
+        GridView1.DataSource = grants;
+        GridView1.DataBind();
+
+
+        //        string[] person = gr.GetGrantsbyRequest();
+        //        GrantDropDownList.DataSource = person;
+        //        GrantDropDownList.DataBind();
+        //        ListItem item = new ListItem("Choose a Donor");
+        //        GrantDropDownList.Items.Insert(0, item);
+        //    }
+    }
+
+
+
+    protected void GridView1_SelectedIndexChanged(object sender, EventArgs e)
+    {
+
     }
 }
 

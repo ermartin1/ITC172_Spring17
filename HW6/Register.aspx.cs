@@ -14,7 +14,7 @@ public partial class Register : System.Web.UI.Page
 
     protected void SubmitButton_Click(object sender, EventArgs e)
     {
-        string user = UserTextBox.Text;
+    //    string user = UserTextBox.Text;
         string first = FirstNameTextBox.Text;
         string last = LastNameTextBox.Text;
         string email = EmailTextBox.Text;
@@ -22,14 +22,14 @@ public partial class Register : System.Web.UI.Page
 
         HW6ClientRef.CommAsstRegClient sc =
              new HW6ClientRef.CommAsstRegClient();
-        HW6ClientRef.Person req = new HW6ClientRef.Person();
-        req.RequesterUserName = user;
-        req.RequesterFirstName = first;
-        req.RequesterLastName = last;
-        req.RequesterEmail = email;
-        req.RequestPlainPassword = password;
+        HW6ClientRef.PersonInfo req = new HW6ClientRef.PersonInfo();
+    //    req.PersonEmail = user;
+        req.firstname = first;
+        req.lastname = last;
+        req.email = email;
+        req.password = password;
 
-        bool result = sc.RegisterRequester(req);
+        bool result = sc.RegisterPerson(req);
         if (result)
         {
             Response.Redirect("Default.aspx");

@@ -7,11 +7,10 @@
     <title>Grant Review</title>
 </head>
 <body>
+    <h1>Grant Request List</h1>
     <form id="form1" runat="server">
     <div>
-        <asp:DropDownList ID="GrantDropDownList" runat="server"
-             AutoPostBack="True" OnSelectedIndexChanged="GrantDropDownList_SelectedIndexChanged"></asp:DropDownList>
-        <asp:GridView ID="GridView1" runat="server"></asp:GridView>
+        <asp:GridView ID="GridView1" runat="server" OnSelectedIndexChanged="GridView1_SelectedIndexChanged"></asp:GridView>
     </div>
     </form>
 </body>

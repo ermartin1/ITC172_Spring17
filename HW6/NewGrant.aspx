@@ -22,28 +22,34 @@
         <td>
             <asp:TextBox ID="LastTextBox" runat="server"></asp:TextBox></td>
     </tr>
-    <tr>
+  <!--  <tr>
         <td>User Name</td>
         <td>
             <asp:TextBox ID="UserTextBox" runat="server"></asp:TextBox></td>
-    </tr>
+    </tr> -->
         <tr>
         <td>Email</td>
         <td>
             <asp:TextBox ID="EmailTextBox" runat="server"></asp:TextBox></td>
     </tr>
    <tr>
-     <td>Grant Type</td>
+     <td>Request Date</td>
+    <td>
+        <asp:TextBox ID="RequestTextBox" runat="server"></asp:TextBox></td>
+    </tr>
+      <tr>
+   <td>Grant Type</td>
     <td>
         <asp:TextBox ID="TypeTextBox" runat="server"></asp:TextBox></td>
     </tr>
+    
     <tr>
    <td>Grant Amount</td>
     <td>
             <asp:TextBox ID="GrantTextBox" runat="server"></asp:TextBox></td>
     </tr>
     <tr>
-    <td><asp:Button ID="SubmitButton" runat="server" Text="Submit Request" OnClick="SubmitButton_Click"/></p> </td>
+    <td><asp:Button ID="SubmitButton" runat="server" Text="Submit Request" OnClick="SubmitButton_Click"/> </td>
     </tr>
            </table>
           </div>

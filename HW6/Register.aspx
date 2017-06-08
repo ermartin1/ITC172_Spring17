@@ -10,17 +10,18 @@
     <form id="form1" runat="server">
     <div>
     <table>
-        <tr>
+  <!--      <tr>
             <td>User Name</td>
             <td>
                 <asp:TextBox ID="UserTextBox" runat="server"></asp:TextBox></td>
-        </tr>
+       
         <td>
             <asp:RequiredFieldValidator ID="RequiredFieldValidator1" 
                 runat="server" 
                 ErrorMessage="User Name is Required" ControlToValidate="UserTextBox">
               </asp:RequiredFieldValidator>
         </td>
+             </tr>-->
         <tr>
             <td>First Name</td>
             <td>
